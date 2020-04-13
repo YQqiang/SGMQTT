@@ -1,0 +1,30 @@
+PODS:
+  - MQTTClient (0.15.3):
+    - MQTTClient/Core (= 0.15.3)
+  - MQTTClient/Core (0.15.3):
+    - MQTTClient/Manager
+    - MQTTClient/Min
+  - MQTTClient/Manager (0.15.3):
+    - MQTTClient/Min
+  - MQTTClient/Min (0.15.3)
+  - SGMQTT (0.0.2):
+    - MQTTClient
+
+DEPENDENCIES:
+  - SGMQTT (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - MQTTClient
+
+EXTERNAL SOURCES:
+  SGMQTT:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MQTTClient: 0dfa04e789479c2e461786464969895c1fcb0875
+  SGMQTT: 1c898633192c5ba84452edf9d3f90c7e46d8ffdf
+
+PODFILE CHECKSUM: d33d5bbf88d1313f9083e497f96c650915e02d12
+
+COCOAPODS: 1.8.4
