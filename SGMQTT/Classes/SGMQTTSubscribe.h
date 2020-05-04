@@ -24,6 +24,11 @@ typedef void(^SGMQTTReceiveDataHandler)(MQTTSessionManager *sessionManager, NSDa
 
 - (instancetype)initWithTopic:(NSString *)topic qos:(MQTTQosLevel)qos handler:(SGMQTTReceiveDataHandler)handler;
 
+- (BOOL)containsOtherTopic:(NSString *)other;
+
++ (NSArray <NSString *>*)topics:(NSString *)topic;
++ (BOOL)topic:(NSString *)topic containsOther:(NSString *)other;
+
 @end
 
 NS_ASSUME_NONNULL_END

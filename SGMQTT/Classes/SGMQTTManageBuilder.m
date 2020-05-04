@@ -126,9 +126,8 @@
         handler(sessionManager, data, topic, retained);
     }
     for (SGMQTTSubscribe *subscribe in self.allSubscribe) {
-        if ([subscribe.topic isEqualToString:topic]) {
+        if ([subscribe containsOtherTopic:topic]) {
             subscribe.handler(sessionManager, data, topic, retained);
-            break;
         }
     }
 }

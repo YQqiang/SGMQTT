@@ -22,4 +22,37 @@
     return @{self.topic: [NSNumber numberWithInt:self.qos]};
 }
 
+- (BOOL)containsOtherTopic:(NSString *)other {
+    return [self.class topic:self.topic containsOther:other];
+}
+
++ (NSArray <NSString *>*)topics:(NSString *)topic {
+    return [topic componentsSeparatedByString:@"/"];
+}
+
++ (BOOL)topic:(NSString *)topic containsOther:(NSString *)other {
+    NSArray <NSString *>*curComponents = [self topics:topic];
+    NSArray <NSString *>*otherComponents = [self topics:other];
+    if ([curComponents.lastObject isEqualToString:@"#"]) {
+        BOOL result = YES;
+        for (int i = 0; i < curComponents.count - 1 && i < otherComponents.count; i ++) {
+            result = result && [curComponents[i] isEqualToString:otherComponents[i]];
+            if (!result) return result;
+        }
+        return result;
+    } else if ([curComponents containsObject:@"+"]) {
+        if (curComponents.count != otherComponents.count) return NO;
+        BOOL result = YES;
+        for (int i = 0; i < curComponents.count && i < otherComponents.count; i ++) {
+            if ([curComponents[i] isEqualToString:@"+"]) {
+                continue;
+            }
+            result = result && [curComponents[i] isEqualToString:otherComponents[i]];
+            if (!result) return result;
+        }
+        return result;
+    }
+    return [topic isEqualToString:other];
+}
+
 @end
